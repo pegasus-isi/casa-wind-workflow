@@ -2,7 +2,7 @@
 
 old_dir=`pwd`
 
-cd $CASA_WORKFLOW_DIR
+cd $WIND_WORKFLOW_DIR
 
 dax_name=$(python daxgen.py -o dax_outputs -f $@)
 ./plan.sh ${dax_name}
