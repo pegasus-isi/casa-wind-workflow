@@ -17,7 +17,7 @@ class CASAWorkflow(object):
         "Generate a workflow"
         ts = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dax = ADAG("casa_wind_wf-%s" % ts)
-        dax.metadata("name", "CASA WIND")
+        dax.metadata("name", "CASA Wind")
         #USER = pwd.getpwuid(os.getuid())[0]
         #dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
         #dax.metadata("created", time.ctime())
@@ -98,7 +98,7 @@ class CASAWorkflow(object):
         self.generate_dax()
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description="CASA Workflow")
+    parser = ArgumentParser(description="CASA Wind Workflow")
     parser.add_argument("-f", "--files", metavar="INPUT_FILES", type=str, nargs="+", help="Radar Files", required=True)
     parser.add_argument("-o", "--outdir", metavar="OUTPUT_LOCATION", type=str, help="DAX Directory", required=True)
 
