@@ -98,7 +98,7 @@ class CASAWorkflow(object):
         self.generate_dax()
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description="CASA Workflow")
+    parser = ArgumentParser(description="CASA Wind Workflow")
     parser.add_argument("-f", "--files", metavar="INPUT_FILES", type=str, nargs="+", help="Radar Files", required=True)
     parser.add_argument("-o", "--outdir", metavar="OUTPUT_LOCATION", type=str, help="DAX Directory", required=True)
 
