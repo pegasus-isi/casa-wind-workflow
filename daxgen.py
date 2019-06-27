@@ -17,7 +17,7 @@ class CASAWorkflow(object):
         "Generate a workflow"
         ts = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dax = ADAG("casa_wind_wf-%s" % ts)
-        dax.metadata("name", "CASA SC-Demo")
+        dax.metadata("name", "CASA Wind")
         #USER = pwd.getpwuid(os.getuid())[0]
         #dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
         #dax.metadata("created", time.ctime())

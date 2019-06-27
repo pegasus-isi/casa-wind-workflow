@@ -104,6 +104,6 @@ sub command_line_parse {
 sub trigger_pegasus {
     my ($flist) = @_;
     my @filelist = @{$flist};
-    my $workflow_dir = $ENV{'CASA_WORKFLOW_DIR'};
+    my $workflow_dir = $ENV{'WIND_WORKFLOW_DIR'};
     system("$workflow_dir/run_wf.sh @filelist");
 }
