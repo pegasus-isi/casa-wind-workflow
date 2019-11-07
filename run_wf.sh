@@ -2,9 +2,12 @@
 
 old_dir=`pwd`
 
-cd $WIND_WORKFLOW_DIR
+#cd $WIND_WORKFLOW_DIR
 
-dax_name=$(python daxgen.py -o dax_outputs -f $@)
-./plan.sh ${dax_name}
+daxgen_out=$(python daxgen.py -o dax_outputs -p pegasus.default.properties -r rc.default.txt -f $@)
+dax_file=$(echo $daxgen_out | cut -d ' ' -f 1)
+properties_file=$(echo $daxgen_out | cut -d ' ' -f 2)
+
+./plan.sh ${dax_file} ${properties_file}
 
 cd $old_dir

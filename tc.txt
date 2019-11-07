@@ -1,11 +1,11 @@
 #### Docker ####
 cont wind_image {
     type "docker"
-    #image_site "docker_hub"
-    #image "docker:///pegasus/casa-wind"
-    image_site "condorpool"
-    #image "file://data/wind_image.tar"
-    image "file://${PWD}/bin/wind_image.tar"
+    image_site "casa-dtn"
+    image "http://casa-dtn/~ldm/containers/casa-wind.tar"
+    mount "/nfs/shared/ldm:/nfs/shared/ldm"
+    mount "/etc/hosts:/etc/hosts:ro"
+    profile env "PEGASUS_HOME" "/nfs/shared/ldm/pegasus-4.9.3panorama"
 }
 
 #### Singularity ####
@@ -21,7 +21,10 @@ tr gunzip {
 		arch "x86_64"
 		os "LINUX"
 		type "INSTALLED"
-      profile pegasus "label" "unzip"
+      profile pegasus "label" "casa_untar_job"
+      profile pegasus "cores" "4"
+      profile pegasus "memory" "2048"
+      profile env "SEQEXEC_CPUS" "4"
     }
 }
 
@@ -68,3 +71,13 @@ tr pointalert {
       profile pegasus "label" "casa_job"
 	}
 }
+
+#tr pegasus::worker {
+#        site condorpool {
+#               pfn "http://casa-dtn/~ldm/pegasus/pegasus-worker-4.9.3panorama-x86_64_rhel_7.tar.gz"
+#               arch "x86_64"
+#               os "LINUX"
+#               type "INSTALLED"
+#        }
+#}
+

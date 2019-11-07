@@ -4,40 +4,50 @@ import sys
 import os
 import pwd
 import time
+import shutil
 from Pegasus.DAX3 import *
 from datetime import datetime
 from argparse import ArgumentParser
 
 class CASAWorkflow(object):
-    def __init__(self, outdir, radar_files):
+    def __init__(self, outdir, radar_files, default_properties, default_replica):
         self.outdir = outdir
         self.radar_files = radar_files
+        self.default_replica = default_replica
+        self.default_properties = default_properties
+        self.replica = {}
 
     def generate_dax(self):
         "Generate a workflow"
         ts = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dax = ADAG("casa_wind_wf-%s" % ts)
         dax.metadata("name", "CASA Wind")
-        #USER = pwd.getpwuid(os.getuid())[0]
-        #dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
-        #dax.metadata("created", time.ctime())
+        USER = pwd.getpwuid(os.getuid())[0]
+        dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
+        dax.metadata("created", time.ctime())
 
         # unzip files if needed
         radar_inputs = []
         #last_time = "0"
-        for f in self.radar_files:
-            f = f.split("/")[-1]
-            if f.endswith(".gz"):
-                radar_input = f[:-3]
+        for pfn in self.radar_files:
+            if pfn.startswith("/") or pfn.startswith("file://"):
+                site = "local"
+            else:
+                site = pfn.split("/")[2]
+            lfn = pfn.split("/")[-1]
+            self.replica[lfn] = {"site": site, "pfn": pfn}
+
+            if lfn.endswith(".gz"):
+                radar_input = lfn[:-3]
                 radar_inputs.append(radar_input)
 
                 unzip = Job("gunzip")
-                unzip.addArguments(f)
-                unzip.uses(f, link=Link.INPUT)
+                unzip.addArguments(lfn)
+                unzip.uses(lfn, link=Link.INPUT)
                 unzip.uses(radar_input, link=Link.OUTPUT, transfer=False, register=False)
                 dax.addJob(unzip)
             else:
-                radar_inputs.append(f)
+                radar_inputs.append(lfn)
             #string_start = f.find("-")
             #string_end = f.find(".", string_start)
             #file_time = f[string_start+1:string_end]
@@ -89,9 +99,23 @@ class CASAWorkflow(object):
         dax.addJob(pointalert_job)
 
         # Write the DAX file
-        daxfile = os.path.join(self.outdir, dax.name+".dax")
-        dax.writeXMLFile(daxfile)
-        print daxfile
+        dax_file = os.path.join(self.outdir, dax.name+".dax")
+        dax.writeXMLFile(dax_file)
+
+        # Write replica catalog
+        replica_file =  os.path.join(self.outdir, dax.name+".rc.txt")
+        shutil.copy(self.default_replica, replica_file)
+        with open(replica_file, 'a') as g:
+            for lfn in self.replica:
+                g.write("{0}    {1}    site=\"{2}\"\n".format(lfn, self.replica[lfn]["pfn"], self.replica[lfn]["site"]))
+        
+        
+        properties_file =  os.path.join(self.outdir, dax.name+".properties")
+        shutil.copy(self.default_properties, properties_file)
+        with open(properties_file, 'a') as g:
+            g.write("pegasus.catalog.replica.file={0}\n".format(replica_file))
+        
+        print "{0} {1}".format(dax_file,properties_file)
 
     def generate_workflow(self):
         # Generate dax
@@ -100,6 +124,8 @@ class CASAWorkflow(object):
 if __name__ == '__main__':
     parser = ArgumentParser(description="CASA Wind Workflow")
     parser.add_argument("-f", "--files", metavar="INPUT_FILES", type=str, nargs="+", help="Radar Files", required=True)
+    parser.add_argument("-r", "--replica", metavar="DEFAULT_REPLICA", type=str, help="Default Replica Catalog", required=True)
+    parser.add_argument("-p", "--properties", metavar="DEFAULT_PROPERTIES", type=str, help="Default Pegasus Properties", required=True)
     parser.add_argument("-o", "--outdir", metavar="OUTPUT_LOCATION", type=str, help="DAX Directory", required=True)
 
     args = parser.parse_args()
@@ -108,5 +134,5 @@ if __name__ == '__main__':
     if not os.path.isdir(args.outdir):
         os.makedirs(outdir)
 
-    workflow = CASAWorkflow(outdir, args.files)
+    workflow = CASAWorkflow(outdir, args.files, args.properties, args.replica)
     workflow.generate_workflow()
