@@ -41,9 +41,9 @@
 
    <site handle="casa-dtn" arch="x86_64" os="LINUX">
       <!-- This is where output data will be stored -->
-      <directory type="shared-storage" path="/output">
-         <file-server operation="get" url="http://casa-dtn/~ldm/output"/>
-         <file-server operation="put" url="scp://ldm@casa-dtn/home/ldm/public_html/output"/>
+      <directory type="shared-storage" path="/output/wind">
+         <file-server operation="get" url="http://casa-dtn/~ldm/output/wind"/>
+         <file-server operation="put" url="scp://ldm@casa-dtn/home/ldm/public_html/output/wind"/>
       </directory>
 
       <profile namespace="pegasus" key="SSH_PRIVATE_KEY">/home/ldm/.ssh/storage_rsa</profile>
