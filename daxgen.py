@@ -28,7 +28,7 @@ class CASAWorkflow(object):
 
         # unzip files if needed
         radar_inputs = []
-        #last_time = "0"
+        last_time = "0"
         for pfn in self.radar_files:
             if pfn.startswith("/") or pfn.startswith("file://"):
                 site = "local"
@@ -48,15 +48,16 @@ class CASAWorkflow(object):
                 dax.addJob(unzip)
             else:
                 radar_inputs.append(lfn)
-            #string_start = f.find("-")
-            #string_end = f.find(".", string_start)
-            #file_time = f[string_start+1:string_end]
-            #if file_time > last_time:
-            #    last_time = file_time
-        
-        string_start = self.radar_files[-1].find("-")
-        string_end = self.radar_files[-1].find(".", string_start)
-        last_time = self.radar_files[-1][string_start+1:string_end]
+            string_start = lfn.find("-")
+            string_end = lfn.find(".", string_start)
+            file_time = lfn[string_start+1:string_end]
+            if file_time > last_time:
+                last_time = file_time
+
+        #string_start = self.radar_files[-1].find("-")
+        #string_start = self.radar_files[-1].find("-")
+        #string_end = self.radar_files[-1].find(".", string_start)
+        #last_time = self.radar_files[-1][string_start+1:string_end]
 
         #calculate max velocity (maybe split them to multiple ones)
         max_velocity = File("MaxVelocity_"+last_time+".netcdf")
