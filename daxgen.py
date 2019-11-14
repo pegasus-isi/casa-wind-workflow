@@ -37,9 +37,15 @@ class CASAWorkflow(object):
             lfn = pfn.split("/")[-1]
             self.replica[lfn] = {"site": site, "pfn": pfn}
 
+            string_start = lfn.find("-")
+            string_end = lfn.find(".", string_start)
+            file_time = lfn[string_start+1:string_end]
+            if file_time > last_time:
+                last_time = file_time
+            
             if lfn.endswith(".gz"):
                 radar_input = lfn[:-3]
-                radar_inputs.append(radar_input)
+                radar_inputs.append([radar_input, file_time])
 
                 unzip = Job("gunzip")
                 unzip.addArguments(lfn)
@@ -47,17 +53,15 @@ class CASAWorkflow(object):
                 unzip.uses(radar_input, link=Link.OUTPUT, transfer=False, register=False)
                 dax.addJob(unzip)
             else:
-                radar_inputs.append(lfn)
-            string_start = lfn.find("-")
-            string_end = lfn.find(".", string_start)
-            file_time = lfn[string_start+1:string_end]
-            if file_time > last_time:
-                last_time = file_time
+                radar_inputs.append([lfn, file_time])
 
         #string_start = self.radar_files[-1].find("-")
         #string_start = self.radar_files[-1].find("-")
         #string_end = self.radar_files[-1].find(".", string_start)
         #last_time = self.radar_files[-1][string_start+1:string_end]
+
+        radar_inputs.sort(key = lambda x: x[1])
+        radar_inputs = [x[0] for x in radar_inputs]
 
         #calculate max velocity (maybe split them to multiple ones)
         max_velocity = File("MaxVelocity_"+last_time+".netcdf")
