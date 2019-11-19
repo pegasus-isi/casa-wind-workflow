@@ -13,6 +13,9 @@
          <file-server operation="all" url="scp://ldm@casa-denton3.noaa.unt.edu${PWD}/output"/>
       </directory>
 
+      <profile namespace="env" key="PEGASUS_TRANSFER_PUBLISH">1</profile>
+      <profile namespace="env" key="PEGASUS_AMQP_URL">amqp://panorama:panorama@140.221.199.54:5673/panorama/monitoring</profile>
+      
       <profile namespace="pegasus" key="SSH_PRIVATE_KEY">/home/ldm/.ssh/storage_rsa</profile>
    </site>
 
@@ -32,7 +35,7 @@
       <profile namespace="pegasus" key="clusters.size">12</profile>
 
       <profile namespace="env" key="PEGASUS_TRANSFER_PUBLISH">1</profile>
-      <profile namespace="env" key="PEGASUS_AMQP_URL">amqp://panorama:panorama@casa-dtn:5673/panorama/monitoring</profile>
+      <profile namespace="env" key="PEGASUS_AMQP_URL">amqp://panorama:panorama@140.221.199.54:5673/panorama/monitoring</profile>
       <profile namespace="pegasus" key="SSH_PRIVATE_KEY">/home/ldm/.ssh/storage_rsa</profile>
    </site>
 
@@ -54,7 +57,7 @@
       <profile namespace="pegasus" key="clusters.size">12</profile>
 
       <profile namespace="env" key="PEGASUS_TRANSFER_PUBLISH">1</profile>
-      <profile namespace="env" key="PEGASUS_AMQP_URL">amqp://panorama:panorama@casa-dtn:5673/panorama/monitoring</profile>
+      <profile namespace="env" key="PEGASUS_AMQP_URL">amqp://panorama:panorama@140.221.199.54:5673/panorama/monitoring</profile>
    </site>
 
    <site handle="casa-dtn" arch="x86_64" os="LINUX">
