@@ -1,3 +1,4 @@
 max_wind.png                    http://casa-dtn/~ldm/input/wind/max_wind.png                    site="casa-dtn"
 pointAlert_config.txt           http://casa-dtn/~ldm/input/wind/pointAlert_config.txt           site="casa-dtn"
-hospital_locations.geojson      http://casa-dtn/~ldm/input/wind/hospital_locations.geojson      site="casa-dtn"
+hospital_locations.geojson      http://casa-dtn/~ldm/input/wind/hospital_locations_sc.geojson      site="casa-dtn"
+#hospital_locations.geojson      http://casa-dtn/~ldm/input/wind/hospital_locations.geojson      site="casa-dtn"
