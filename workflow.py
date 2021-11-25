@@ -118,7 +118,8 @@ class CASAWorkflow(object):
                 radar_inputs.append(output_filename)
                 unzip_job = Job("unzip").add_args(lfn_name)\
                 .add_inputs(lfn_name)\
-                .add_outputs(output_filename)
+                .add_outputs(output_filename)\
+                .add_condor_profile(requirements="MACHINE_SPECIAL_ID == 1")
 
                 unzip_jobs.append(unzip_job)
                 
@@ -135,24 +136,28 @@ class CASAWorkflow(object):
         max_velocity = File("MaxVelocity_"+last_time+".netcdf")
         maxvel_job = Job("um_vel").add_args((" ".join(radar_inputs)))\
                             .add_inputs(*radar_inputs)\
-                            .add_outputs(max_velocity)
+                            .add_outputs(max_velocity)\
+                            .add_condor_profile(requirements="MACHINE_SPECIAL_ID == 1")
 
         max_velocity_image = File(max_velocity_name+".png")
         postvel_job = Job("post_vel").add_args("-c", max_wind_filename, "-q 235 -z 11.176,38", "-o", max_velocity_image, max_velocity)\
                             .add_inputs(max_wind_filename, max_velocity)\
-                            .add_outputs(max_velocity_image)
+                            .add_outputs(max_velocity_image)\
+                            .add_condor_profile(requirements="MACHINE_SPECIAL_ID == 0")
 
 
         mvt_geojson_file = File("mvt_"+max_velocity_name+".geojson")
         mvt_geojson_job = Job("mvt").add_args(max_velocity)\
                             .add_inputs(max_velocity)\
-                            .add_outputs(mvt_geojson_file)    
+                            .add_outputs(mvt_geojson_file)\
+                            .add_condor_profile(requirements="MACHINE_SPECIAL_ID == 0")
 
         alert_geojson_file = File("alert_"+last_time+".geojson")
         point_alert_job = Job("point_alert").add_args("-c", pointalert_filename, "-p", "-o", alert_geojson_file, 
         "-g", hospital_locations_filename, mvt_geojson_file)\
                             .add_inputs(pointalert_filename, hospital_locations_filename, mvt_geojson_file)\
-                            .add_outputs(alert_geojson_file)   
+                            .add_outputs(alert_geojson_file)\
+                            .add_condor_profile(requirements="MACHINE_SPECIAL_ID == 0")
 
         workflow.add_jobs(*unzip_jobs, maxvel_job, postvel_job, mvt_geojson_job, point_alert_job)
         workflow.add_transformation_catalog(tc)
