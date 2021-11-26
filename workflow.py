@@ -22,8 +22,7 @@ pointalert_filename = "pointAlert_config.txt"
 hospital_locations_filename = "hospital_locations.geojson"
 
 class CASAWorkflow(object):
-    def __init__(self, outdir: str, radar_files: List[str]):
-        self.outdir = outdir
+    def __init__(self, radar_files: List[str]):
         self.radar_files = radar_files
         
     def generate_tc(self) -> None:
@@ -111,7 +110,7 @@ class CASAWorkflow(object):
         unzip_jobs = []
         radar_inputs = []
         
-        for lfn, pfn in rc.entries.items():
+        for lfn in self.radar_files:
             lfn_name = lfn[0]
             if lfn_name.endswith(".gz"):
                 output_filename = lfn_name[:-3]
@@ -168,17 +167,13 @@ class CASAWorkflow(object):
 if __name__ == '__main__':
     parser = ArgumentParser(description="CASA Wind Workflow")
     parser.add_argument("-f", "--files", metavar="INPUT_FILES", type=str, nargs="+", help="Radar Files", required=True)
-    parser.add_argument("-o", "--outdir", metavar="OUTPUT_LOCATION", type=str, help="DAX Directory", required=True)
+    parser.add_argument("-o", "--output", metavar="OUTPUT_FILE", type=str, default="workflow.yml", help="Output file name")
 
     args = parser.parse_args()
-    outdir = os.path.abspath(args.outdir)
-    
-    if not os.path.isdir(args.outdir):
-        os.makedirs(outdir)
 
-    casa_wf = CASAWorkflow(outdir, args.files)
+    casa_wf = CASAWorkflow(args.files)
     workflow = casa_wf.generate_workflow()
-    workflow.write()
-    workflow.graph(output="workflow.png", include_files=True, no_simplify=True, label="xform-id")
-    workflow.plan(submit=True)
-    workflow.wait()
+    workflow.write(args.output)
+    #workflow.graph(output="workflow.png", include_files=True, no_simplify=True, label="xform-id")
+    #workflow.plan(submit=True)
+    #workflow.wait()
