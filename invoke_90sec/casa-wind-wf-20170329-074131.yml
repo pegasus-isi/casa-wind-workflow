@@ -1,135 +1,9 @@
 x-pegasus:
   apiLang: python
-  createdBy: georgpap
-  createdOn: 11-26-21T01:45:31Z
+  createdBy: panorama
+  createdOn: 11-30-21T02:51:02Z
 pegasus: '5.0'
-name: casa_wind_wf-20211126T094531Z
-replicaCatalog:
-  replicas:
-  - lfn: denton.tx-20170329-074001.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/denton.tx-20170329-074001.netcdf.gz
-  - lfn: cleburne.tx-20170329-074002.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/cleburne.tx-20170329-074002.netcdf.gz
-  - lfn: mesquite.tx-20170329-074007.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/mesquite.tx-20170329-074007.netcdf.gz
-  - lfn: midlothian.tx-20170329-074007.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/midlothian.tx-20170329-074007.netcdf.gz
-  - lfn: ftworth.tx-20170329-074012.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/ftworth.tx-20170329-074012.netcdf.gz
-  - lfn: arlington.tx-20170329-074015.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/arlington.tx-20170329-074015.netcdf.gz
-  - lfn: cleburne.tx-20170329-074025.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/cleburne.tx-20170329-074025.netcdf.gz
-  - lfn: denton.tx-20170329-074027.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/denton.tx-20170329-074027.netcdf.gz
-  - lfn: mesquite.tx-20170329-074027.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/mesquite.tx-20170329-074027.netcdf.gz
-  - lfn: midlothian.tx-20170329-074027.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/midlothian.tx-20170329-074027.netcdf.gz
-  - lfn: addison.tx-20170329-074028.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/addison.tx-20170329-074028.netcdf.gz
-  - lfn: ftworth.tx-20170329-074031.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/ftworth.tx-20170329-074031.netcdf.gz
-  - lfn: arlington.tx-20170329-074035.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/arlington.tx-20170329-074035.netcdf.gz
-  - lfn: mesquite.tx-20170329-074047.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/mesquite.tx-20170329-074047.netcdf.gz
-  - lfn: midlothian.tx-20170329-074047.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/midlothian.tx-20170329-074047.netcdf.gz
-  - lfn: ftworth.tx-20170329-074051.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/ftworth.tx-20170329-074051.netcdf.gz
-  - lfn: arlington.tx-20170329-074055.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/arlington.tx-20170329-074055.netcdf.gz
-  - lfn: denton.tx-20170329-074101.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/denton.tx-20170329-074101.netcdf.gz
-  - lfn: cleburne.tx-20170329-074102.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/cleburne.tx-20170329-074102.netcdf.gz
-  - lfn: midlothian.tx-20170329-074107.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/midlothian.tx-20170329-074107.netcdf.gz
-  - lfn: mesquite.tx-20170329-074107.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/mesquite.tx-20170329-074107.netcdf.gz
-  - lfn: ftworth.tx-20170329-074111.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/ftworth.tx-20170329-074111.netcdf.gz
-  - lfn: arlington.tx-20170329-074115.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/arlington.tx-20170329-074115.netcdf.gz
-  - lfn: cleburne.tx-20170329-074126.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/cleburne.tx-20170329-074126.netcdf.gz
-  - lfn: addison.tx-20170329-074127.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/addison.tx-20170329-074127.netcdf.gz
-  - lfn: denton.tx-20170329-074127.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/denton.tx-20170329-074127.netcdf.gz
-  - lfn: mesquite.tx-20170329-074127.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/mesquite.tx-20170329-074127.netcdf.gz
-  - lfn: midlothian.tx-20170329-074127.netcdf.gz
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/midlothian.tx-20170329-074127.netcdf.gz
-  - lfn: max_wind.png
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/max_wind.png
-  - lfn: hospital_locations.geojson
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/hospital_locations.geojson
-  - lfn: pointAlert_config.txt
-    pfns:
-    - site: local
-      pfn: /home/georgpap/GitHub/pegasus-isi/casa-wind-workflow/input/pointAlert_config.txt
+name: casa_wind_wf-20211130T025102Z
 transformationCatalog:
   transformations:
   - name: unzip
@@ -179,6 +53,8 @@ jobs:
   profiles:
     condor:
       requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
 - type: job
   name: post_vel
   id: ID0000002
@@ -190,17 +66,19 @@ jobs:
   - MaxVelocity_20170329-074127.png
   - MaxVelocity_20170329-074127.netcdf
   uses:
+  - lfn: MaxVelocity_20170329-074127.netcdf
+    type: input
   - lfn: max_wind.png
     type: input
   - lfn: MaxVelocity_20170329-074127.png
     type: output
     stageOut: true
     registerReplica: true
-  - lfn: MaxVelocity_20170329-074127.netcdf
-    type: input
   profiles:
     condor:
       requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
 - type: job
   name: mvt
   id: ID0000003
@@ -216,6 +94,8 @@ jobs:
   profiles:
     condor:
       requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
 - type: job
   name: point_alert
   id: ID0000004
@@ -229,24 +109,26 @@ jobs:
   - hospital_locations.geojson
   - mvt_MaxVelocity_20170329-074127.geojson
   uses:
-  - lfn: hospital_locations.geojson
-    type: input
   - lfn: alert_20170329-074127.geojson
     type: output
     stageOut: true
     registerReplica: true
+  - lfn: mvt_MaxVelocity_20170329-074127.geojson
+    type: input
   - lfn: pointAlert_config.txt
     type: input
-  - lfn: mvt_MaxVelocity_20170329-074127.geojson
+  - lfn: hospital_locations.geojson
     type: input
   profiles:
     condor:
       requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
 jobDependencies:
 - id: ID0000001
   children:
-  - ID0000003
   - ID0000002
+  - ID0000003
 - id: ID0000003
   children:
   - ID0000004
