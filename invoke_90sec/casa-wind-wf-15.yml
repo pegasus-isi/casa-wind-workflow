@@ -1,0 +1,569 @@
+x-pegasus:
+  apiLang: python
+  createdBy: panorama
+  createdOn: 12-01-21T21:30:37Z
+pegasus: '5.0'
+name: casa-wind
+transformationCatalog:
+  transformations:
+  - name: gunzip
+    sites:
+    - name: condorpool
+      pfn: /bin/gunzip
+      type: installed
+      container: casa_wind_cont
+  - name: um_vel
+    sites:
+    - name: condorpool
+      pfn: /opt/UM_VEL/UM_VEL
+      type: installed
+      container: casa_wind_cont
+  - name: post_vel
+    sites:
+    - name: condorpool
+      pfn: /opt/netcdf2png/merged_netcdf2png
+      type: installed
+      container: casa_wind_cont
+  - name: mvt
+    sites:
+    - name: condorpool
+      pfn: /opt/mvt/mvt
+      type: installed
+      container: casa_wind_cont
+  - name: point_alert
+    sites:
+    - name: condorpool
+      pfn: /opt/pointAlert/pointAlert
+      type: installed
+      container: casa_wind_cont
+  containers:
+  - name: casa_wind_cont
+    type: singularity
+    image: /usr/bin/casa-wind_latest.sif
+    mounts:
+    - /home/panorama/public_html:/home/panorama/public_html:ro
+    image.site: condorpool
+jobs:
+- type: job
+  name: gunzip
+  id: gunzip_0
+  arguments:
+  - --force
+  - ftworth.tx-20170329-073231.netcdf.gz
+  uses:
+  - lfn: ftworth.tx-20170329-073231.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_1
+  arguments:
+  - --force
+  - arlington.tx-20170329-073234.netcdf.gz
+  uses:
+  - lfn: arlington.tx-20170329-073234.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_2
+  arguments:
+  - --force
+  - addison.tx-20170329-073238.netcdf.gz
+  uses:
+  - lfn: addison.tx-20170329-073238.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_3
+  arguments:
+  - --force
+  - midlothian.tx-20170329-073247.netcdf.gz
+  uses:
+  - lfn: midlothian.tx-20170329-073247.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_4
+  arguments:
+  - --force
+  - mesquite.tx-20170329-073247.netcdf.gz
+  uses:
+  - lfn: mesquite.tx-20170329-073247.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_5
+  arguments:
+  - --force
+  - ftworth.tx-20170329-073251.netcdf.gz
+  uses:
+  - lfn: ftworth.tx-20170329-073251.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_6
+  arguments:
+  - --force
+  - arlington.tx-20170329-073255.netcdf.gz
+  uses:
+  - lfn: arlington.tx-20170329-073255.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_7
+  arguments:
+  - --force
+  - denton.tx-20170329-073301.netcdf.gz
+  uses:
+  - lfn: denton.tx-20170329-073301.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_8
+  arguments:
+  - --force
+  - cleburne.tx-20170329-073302.netcdf.gz
+  uses:
+  - lfn: cleburne.tx-20170329-073302.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_9
+  arguments:
+  - --force
+  - midlothian.tx-20170329-073307.netcdf.gz
+  uses:
+  - lfn: midlothian.tx-20170329-073307.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_10
+  arguments:
+  - --force
+  - mesquite.tx-20170329-073307.netcdf.gz
+  uses:
+  - lfn: mesquite.tx-20170329-073307.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_11
+  arguments:
+  - --force
+  - ftworth.tx-20170329-073311.netcdf.gz
+  uses:
+  - lfn: ftworth.tx-20170329-073311.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_12
+  arguments:
+  - --force
+  - arlington.tx-20170329-073314.netcdf.gz
+  uses:
+  - lfn: arlington.tx-20170329-073314.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_13
+  arguments:
+  - --force
+  - cleburne.tx-20170329-073325.netcdf.gz
+  uses:
+  - lfn: cleburne.tx-20170329-073325.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_14
+  arguments:
+  - --force
+  - midlothian.tx-20170329-073327.netcdf.gz
+  uses:
+  - lfn: midlothian.tx-20170329-073327.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_15
+  arguments:
+  - --force
+  - mesquite.tx-20170329-073327.netcdf.gz
+  uses:
+  - lfn: mesquite.tx-20170329-073327.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_16
+  arguments:
+  - --force
+  - denton.tx-20170329-073327.netcdf.gz
+  uses:
+  - lfn: denton.tx-20170329-073327.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_17
+  arguments:
+  - --force
+  - ftworth.tx-20170329-073331.netcdf.gz
+  uses:
+  - lfn: ftworth.tx-20170329-073331.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_18
+  arguments:
+  - --force
+  - arlington.tx-20170329-073334.netcdf.gz
+  uses:
+  - lfn: arlington.tx-20170329-073334.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_19
+  arguments:
+  - --force
+  - addison.tx-20170329-073337.netcdf.gz
+  uses:
+  - lfn: addison.tx-20170329-073337.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_20
+  arguments:
+  - --force
+  - mesquite.tx-20170329-073347.netcdf.gz
+  uses:
+  - lfn: mesquite.tx-20170329-073347.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_21
+  arguments:
+  - --force
+  - midlothian.tx-20170329-073347.netcdf.gz
+  uses:
+  - lfn: midlothian.tx-20170329-073347.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_22
+  arguments:
+  - --force
+  - ftworth.tx-20170329-073351.netcdf.gz
+  uses:
+  - lfn: ftworth.tx-20170329-073351.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: gunzip
+  id: gunzip_23
+  arguments:
+  - --force
+  - arlington.tx-20170329-073354.netcdf.gz
+  uses:
+  - lfn: arlington.tx-20170329-073354.netcdf.gz
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: um_vel
+  id: um_vel
+  arguments:
+  - ftworth.tx-20170329-073231.netcdf
+  - arlington.tx-20170329-073234.netcdf
+  - addison.tx-20170329-073238.netcdf
+  - midlothian.tx-20170329-073247.netcdf
+  - mesquite.tx-20170329-073247.netcdf
+  - ftworth.tx-20170329-073251.netcdf
+  - arlington.tx-20170329-073255.netcdf
+  - denton.tx-20170329-073301.netcdf
+  - cleburne.tx-20170329-073302.netcdf
+  - midlothian.tx-20170329-073307.netcdf
+  - mesquite.tx-20170329-073307.netcdf
+  - ftworth.tx-20170329-073311.netcdf
+  - arlington.tx-20170329-073314.netcdf
+  - cleburne.tx-20170329-073325.netcdf
+  - midlothian.tx-20170329-073327.netcdf
+  - mesquite.tx-20170329-073327.netcdf
+  - denton.tx-20170329-073327.netcdf
+  - ftworth.tx-20170329-073331.netcdf
+  - arlington.tx-20170329-073334.netcdf
+  - addison.tx-20170329-073337.netcdf
+  - mesquite.tx-20170329-073347.netcdf
+  - midlothian.tx-20170329-073347.netcdf
+  - ftworth.tx-20170329-073351.netcdf
+  - arlington.tx-20170329-073354.netcdf
+  uses:
+  - lfn: MaxVelocity_20170329-073354.netcdf
+    type: output
+    stageOut: false
+    registerReplica: false
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 1
+    pegasus:
+      label: top
+- type: job
+  name: post_vel
+  id: ID0000001
+  arguments:
+  - -c
+  - max_wind.png
+  - -q 235 -z 11.176,38
+  - -o
+  - MaxVelocity_20170329-073354.png
+  - MaxVelocity_20170329-073354.netcdf
+  uses:
+  - lfn: MaxVelocity_20170329-073354.png
+    type: output
+    stageOut: true
+    registerReplica: false
+  - lfn: max_wind.png
+    type: input
+  - lfn: MaxVelocity_20170329-073354.netcdf
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
+- type: job
+  name: mvt
+  id: ID0000002
+  arguments:
+  - MaxVelocity_20170329-073354.netcdf
+  uses:
+  - lfn: mvt_MaxVelocity_20170329-073354.geojson
+    type: output
+    stageOut: false
+    registerReplica: false
+  - lfn: MaxVelocity_20170329-073354.netcdf
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
+- type: job
+  name: point_alert
+  id: ID0000003
+  arguments:
+  - -c
+  - pointAlert_config.txt
+  - -p
+  - -o
+  - alert_20170329-073354.geojson
+  - -g
+  - hospital_locations.geojson
+  - mvt_MaxVelocity_20170329-073354.geojson
+  uses:
+  - lfn: pointAlert_config.txt
+    type: input
+  - lfn: alert_20170329-073354.geojson
+    type: output
+    stageOut: true
+    registerReplica: false
+  - lfn: mvt_MaxVelocity_20170329-073354.geojson
+    type: input
+  - lfn: hospital_locations.geojson
+    type: input
+  profiles:
+    condor:
+      requirements: MACHINE_SPECIAL_ID == 0
+    pegasus:
+      label: bottom
+jobDependencies:
+- id: gunzip_0
+  children:
+  - um_vel
+- id: gunzip_1
+  children:
+  - um_vel
+- id: gunzip_2
+  children:
+  - um_vel
+- id: gunzip_3
+  children:
+  - um_vel
+- id: gunzip_4
+  children:
+  - um_vel
+- id: gunzip_5
+  children:
+  - um_vel
+- id: gunzip_6
+  children:
+  - um_vel
+- id: gunzip_7
+  children:
+  - um_vel
+- id: gunzip_8
+  children:
+  - um_vel
+- id: gunzip_9
+  children:
+  - um_vel
+- id: gunzip_10
+  children:
+  - um_vel
+- id: gunzip_11
+  children:
+  - um_vel
+- id: gunzip_12
+  children:
+  - um_vel
+- id: gunzip_13
+  children:
+  - um_vel
+- id: gunzip_14
+  children:
+  - um_vel
+- id: gunzip_15
+  children:
+  - um_vel
+- id: gunzip_16
+  children:
+  - um_vel
+- id: gunzip_17
+  children:
+  - um_vel
+- id: gunzip_18
+  children:
+  - um_vel
+- id: gunzip_19
+  children:
+  - um_vel
+- id: gunzip_20
+  children:
+  - um_vel
+- id: gunzip_21
+  children:
+  - um_vel
+- id: gunzip_22
+  children:
+  - um_vel
+- id: gunzip_23
+  children:
+  - um_vel
+- id: um_vel
+  children:
+  - ID0000001
+  - ID0000002
+- id: ID0000002
+  children:
+  - ID0000003
